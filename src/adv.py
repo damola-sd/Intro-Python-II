@@ -44,17 +44,28 @@ player = Player(input("Give us your name before you embark on this journey "), o
 # Write a loop that:
 #
 
+full_cardinal = {
+    "n": "North",
+    "e": "East",
+    "s": "South",
+    "w": "West",
+}
+
 def next_room(room, cardinal):
     direction = cardinal + "_to"
-    new_room = getattr(room, direction)
     # print(new_room)
-    return new_room
+    if hasattr(room, direction):
+        new_room = getattr(room, direction)
+        return new_room
+    else:
+        return False
 
 def move_player(player, cardinal):
     current_room = next_room(player.room, cardinal)
     # print(current_room)
     if current_room:
         player.room = current_room
+        print(f"You have gone {full_cardinal[cardinal]} and are now in {player.room}")
         return True
     else:
         return False
