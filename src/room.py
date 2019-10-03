@@ -2,13 +2,10 @@
 # description attributes.
 class Room():
     def __init__(self, name, description):
-        self.name = name
+        self.room_name = name
         self.description = description
 
     
     def __str__(self):
-        return "Room " + self.name + "\t Description" + self.description
+        return "Room: " + self.room_name + "\t Description: " + self.description
     
-
-room = Room("foyer", "Outside ROom")
-print(room)
