@@ -40,10 +40,43 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 outside_room = room['outside']
-player = Player("damola", outside_room)
+player = Player(input("Give us your name before you embark on this journey "), outside_room)
 # Write a loop that:
 #
-print(player)
+
+def next_room(room, cardinal):
+    direction = cardinal + "_to"
+    new_room = getattr(room, direction)
+    # print(new_room)
+    return new_room
+
+def move_player(player, cardinal):
+    current_room = next_room(player.room, cardinal)
+    # print(current_room)
+    if current_room:
+        player.room = current_room
+        return True
+    else:
+        return False
+
+finish = False
+while (finish == 0):
+    print(player.room)
+    move = input("Make a move in a direction ").strip().lower()
+    print(player)
+    if (move == "n" or move == "e" or move == "w" or move == "s"):
+        next_pos = move_player(player, move)
+        if next_pos:
+             continue
+        else: 
+            print("You can't go that way")
+            continue
+    elif move == "quit":
+        finish = True
+        continue
+    else: 
+        print("Invalid command")
+        continue
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
