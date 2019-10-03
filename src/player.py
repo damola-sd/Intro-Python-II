@@ -15,4 +15,4 @@ class Player(Room):
 room = Room("Outside", "Outside the Cave")
 player = Player("Damola", room)
 
-print(player)
+# print(player)
